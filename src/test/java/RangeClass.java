@@ -1,11 +1,11 @@
 public class RangeClass {
-	int max, min;
+	private int last, first;
 	public static final char OPEN_RIGHT = ')';
 	public static final char OPEN_LEFT = '(';
 	public static final String COMMA = ",";
 	public static final String BRACLET_RIGHT = "}";
 	public static final String BRACLET_LEFT = "{";
-	
+
 	public String getInput(String inputRange) throws InvalidRangeException {
 		validate(splitComma(inputRange));
 		checkSymbol(inputRange);
@@ -14,34 +14,32 @@ public class RangeClass {
 
 	private void checkSymbol(String string) {
 		if (string.charAt(0) == OPEN_LEFT) {
-			min++;
+			first++;
 		}
 		if (string.charAt(string.length() - 1) == OPEN_RIGHT) {
-			max--;
+			last--;
 		}
 	}
 
 	private String buildResult() {
-		String expected = BRACLET_LEFT;
-		int current = min;
-		int lastPosition = max - min;
-		for (int position = 0; position <= lastPosition; position++) {
-			expected += current++;
-			if (position != lastPosition) {
-				expected += COMMA;
+		String result = "";
+		for (int current = first; current <= last; current++) {
+			result += current;
+			if (current != last) {
+				result += COMMA;
 			}
 		}
-		return expected += BRACLET_RIGHT;
+		return BRACLET_LEFT+result+BRACLET_RIGHT;
 	}
 
 	private void validate(String[] arrString) throws InvalidRangeException {
 		try {
-			min = Integer.parseInt(arrString[0]);
-			max = Integer.parseInt(arrString[1]);
+			first = Integer.parseInt(arrString[0]);
+			last = Integer.parseInt(arrString[1]);
 		} catch (Exception e) {
 			throw new InvalidRangeException("Invalid Range Exception");
 		}
-		if (max < min) {
+		if (last < first) {
 			throw new InvalidRangeException("Invalid Range Exception");
 		}
 	}

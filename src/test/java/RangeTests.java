@@ -13,12 +13,6 @@ public class RangeTests {
 	}
 
 	@Test
-	public void test() {
-		// fail("Not yet implemented");
-		assertTrue("expect to be True", true);
-	}
-
-	@Test
 	public void closeZeroFiveCloseIncluseZeroToFive()
 			throws InvalidRangeException {
 		assertEquals("CloseZeroFiveCloseIncluseZeroToFive", "{0,1,2,3,4,5}",
