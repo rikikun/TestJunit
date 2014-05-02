@@ -1,19 +1,10 @@
 public class RangeClass {
-
+	int max, min;
 	public String getInput(String string) throws InvalidRangeException {
 		String expected = "{";
-		int max = 0, min = 0;
-		String[] split = string.substring(1, string.length() - 1).split(",");
-		try {
-			min = Integer.parseInt(split[0]);
-			max = Integer.parseInt(split[1]);
-		} catch (Exception e) {
-			throw new InvalidRangeException("Invalid Range Exception");
-		}
-
-		if (max < min) {
-			throw new InvalidRangeException("Invalid Range Exception");
-		}
+		
+		
+		validate(splitComma(string));
 
 		if (string.charAt(0) == '(') {
 			min++;
@@ -36,4 +27,23 @@ public class RangeClass {
 
 		return expected;
 	}
+
+	private void validate(String[] arrString) throws InvalidRangeException {
+		try {
+			min = Integer.parseInt(arrString[0]);
+			max = Integer.parseInt(arrString[1]);
+		} catch (Exception e) {
+			throw new InvalidRangeException("Invalid Range Exception");
+		}
+
+		if (max < min) {
+			throw new InvalidRangeException("Invalid Range Exception");
+		}
+		
+	}
+
+	private String[] splitComma(String string) throws InvalidRangeException {
+		return string.substring(1, string.length() - 1).split(",");
+	}
+ 
 }
