@@ -12,4 +12,18 @@ public class GameTest {
 		return "Player1";
 	}
 
+	public static void main(String[] args) {
+		int time = 10;
+		PlayerPowYingChub player1 = new PlayerPowYingChub();
+		PlayerPowYingChub player2 = new PlayerPowYingChub();
+		GameTest system = new GameTest();
+		String p1, p2;
+		for (int i = 0; i < time; i++) {
+			p1 = player1.genOutput();
+			p2 = player2.genOutput();
+			System.out.println("Time :" + i + " Player1:" + p1 + " Player2:" + p2
+					+ "	Result:" + system.powYingChub(p1, p2));
+		}
+	}
+
 }
