@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -51,12 +52,24 @@ public class RangeTests {
 				rangeClass.getInput("[2,2]"));
 	}
 
-	@Test(expected = InvalidRangeException.class)
-	public void beginMoreThanEndReturnInvalidRangeException()
-			throws InvalidRangeException {
-		rangeClass.getInput("[4,2]");
+	 @Test(expected = InvalidRangeException.class)
+	 public void beginMoreThanEndReturnInvalidRangeException()
+	 throws InvalidRangeException {
+	 rangeClass.getInput("[4,2]");
+	
+	 }
 
-	}
+//	@Test
+//	public void beginMoreThanEndReturnInvalidRangeException() {
+//		try {
+//			rangeClass.getInput("[4,2]");
+//			fail("should not reach this line");
+//		} catch (InvalidRangeException ee) {
+//
+//		} catch (Exception e) {
+//			fail("Exception");
+//		}
+//	}
 
 	@Test
 	public void openMoreThanOneDigitCloseReturnInvalidRangeException()
