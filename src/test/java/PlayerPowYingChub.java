@@ -12,8 +12,4 @@ public class PlayerPowYingChub {
 		return setout[randomNum];
 	}
 
-	public static void main(String[] args) {
-		System.out.print(new PlayerPowYingChub().genOutput());
-	}
-
 }
