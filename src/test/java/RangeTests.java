@@ -1,10 +1,16 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.io.InvalidClassException;
-
+import org.junit.Before;
 import org.junit.Test;
 
 public class RangeTests {
+	RangeClass rangeClass;
+
+	@Before
+	public void setInitial() {
+		rangeClass = new RangeClass();
+	}
 
 	@Test
 	public void test() {
@@ -13,62 +19,62 @@ public class RangeTests {
 	}
 
 	@Test
-	public void CloseZeroFiveCloseIncluseZeroToFive()
+	public void closeZeroFiveCloseIncluseZeroToFive()
 			throws InvalidRangeException {
 		assertEquals("CloseZeroFiveCloseIncluseZeroToFive", "{0,1,2,3,4,5}",
-				new RangeClass().getInput("[0,5]"));
+				rangeClass.getInput("[0,5]"));
 	}
 
 	@Test
-	public void OpenZeroFiveCloseIncluseOneToFive()
+	public void openZeroFiveCloseIncluseOneToFive()
 			throws InvalidRangeException {
 		assertEquals("CloseZeroFiveCloseIncluseZeroToFive", "{1,2,3,4,5}",
-				new RangeClass().getInput("(0,5]"));
+				rangeClass.getInput("(0,5]"));
 	}
 
 	@Test
-	public void CloseZeroFiveOpenIncluseZeroToFour()
+	public void closeZeroFiveOpenIncluseZeroToFour()
 			throws InvalidRangeException {
 		assertEquals("CloseZeroFiveCloseIncluseZeroToFive", "{0,1,2,3,4}",
-				new RangeClass().getInput("[0,5)"));
+				rangeClass.getInput("[0,5)"));
 	}
 
 	@Test
-	public void OpenZeroFiveOpenIncluseOneToFour() throws InvalidRangeException {
+	public void openZeroFiveOpenIncluseOneToFour() throws InvalidRangeException {
 		assertEquals("CloseZeroFiveCloseIncluseZeroToFive", "{1,2,3,4}",
-				new RangeClass().getInput("(0,5)"));
+				rangeClass.getInput("(0,5)"));
 	}
 
 	@Test
-	public void OpenOneOneOpenIncluseNull() throws InvalidRangeException {
+	public void openOneOneOpenIncluseNull() throws InvalidRangeException {
 		assertEquals("CloseZeroFiveCloseIncluseZeroToFive", "{}",
-				new RangeClass().getInput("(1,1)"));
+				rangeClass.getInput("(1,1)"));
 	}
 
 	@Test
-	public void CloseTwoTwoCloseIncluseTwo() throws InvalidRangeException {
+	public void closeTwoTwoCloseIncluseTwo() throws InvalidRangeException {
 		assertEquals("CloseZeroFiveCloseIncluseZeroToFive", "{2}",
-				new RangeClass().getInput("[2,2]"));
+				rangeClass.getInput("[2,2]"));
 	}
 
 	@Test(expected = InvalidRangeException.class)
-	public void BeginMoreThanEndReturnInvalidRangeException()
+	public void beginMoreThanEndReturnInvalidRangeException()
 			throws InvalidRangeException {
-		new RangeClass().getInput("[4,2]");
+		rangeClass.getInput("[4,2]");
 
 	}
 
 	@Test
-	public void OpenMoreThanOneDigitCloseReturnInvalidRangeException()
+	public void openMoreThanOneDigitCloseReturnInvalidRangeException()
 			throws InvalidRangeException {
 		assertEquals("CloseZeroFiveCloseIncluseZeroToFive", "{100,101,102}",
-				new RangeClass().getInput("[100,102]"));
+				rangeClass.getInput("[100,102]"));
 	}
 
 	@Test(expected = InvalidRangeException.class)
-	public void StringReturnInvalidRangeException()
+	public void stringReturnInvalidRangeException()
 			throws InvalidRangeException {
-		new RangeClass().getInput("[aaa,aaa]");
+		rangeClass.getInput("[aaa,aaa]");
 	}
 
 }

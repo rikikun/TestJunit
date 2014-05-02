@@ -6,9 +6,9 @@ public class RangeClass {
 	public static final String BRACLET_RIGHT = "}";
 	public static final String BRACLET_LEFT = "{";
 	
-	public String getInput(String string) throws InvalidRangeException {
-		validate(splitComma(string));
-		checkSymbol(string);
+	public String getInput(String inputRange) throws InvalidRangeException {
+		validate(splitComma(inputRange));
+		checkSymbol(inputRange);
 		return buildResult();
 	}
 
@@ -24,9 +24,10 @@ public class RangeClass {
 	private String buildResult() {
 		String expected = BRACLET_LEFT;
 		int current = min;
-		for (int i = 0; i <= (max - min); i++) {
+		int lastPosition = max - min;
+		for (int position = 0; position <= lastPosition; position++) {
 			expected += current++;
-			if (i != (max - min)) {
+			if (position != lastPosition) {
 				expected += COMMA;
 			}
 		}
